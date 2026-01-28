@@ -49,13 +49,6 @@ Finds the maximum value from multiple integer variables.
 
 ## Installation
 
-### Via Module Store
-
-1. Open the IP-Symcon Management Console
-2. Navigate to the Module Store
-3. Search for "VariableAggregation"
-4. Click Install
-
 ### Via Module Control
 
 1. Open the IP-Symcon Management Console
