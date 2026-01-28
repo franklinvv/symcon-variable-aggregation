@@ -70,29 +70,6 @@
 			return $maxValue ?? 0;
 		}
 
-		// private function calculateAverageTemperature() {
-		// 	$averageTemperature = 0.0;
-		// 	$totalWeight = 0;
-		// 	$maxAge = 6; //hours
-		// 	$temperatureVariables = $this->getRegisteredTemperatureVariables();
-		// 	foreach($temperatureVariables as $temperatureVariable) {
-		// 		$varInfo = IPS_GetVariable($temperatureVariable->VariableID);
-		// 		if(time() - $varInfo["VariableUpdated"] > 60*60*$maxAge) {
-		// 			IPS_LogMessage("Averaging", sprintf("Skipping %d due to age (last updated at %s, older than %d hours)", $temperatureVariable->VariableID, date("H:i:s", $varInfo["VariableUpdated"]), $maxAge));
-		// 			continue;
-		// 		}
-		// 		$temperature = GetValueFloat($temperatureVariable->VariableID);
-		// 		$averageTemperature += ($temperature * $temperatureVariable->Weight);
-		// 		$totalWeight += $temperatureVariable->Weight;
-		// 	}
-		// 	if($averageTemperature == 0) {
-		// 		return 0;
-		// 	}
-
-		// 	$averageTemperature /= $totalWeight;
-		// 	return $averageTemperature;
-		// }
-
 		private function getRegisteredVariables() {
 			$variablesJson = $this->ReadPropertyString("Variables");
 			$result = json_decode($variablesJson);
