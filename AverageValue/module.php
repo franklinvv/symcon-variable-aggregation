@@ -62,6 +62,10 @@
 			$maxAge = 6; //hours
 			$variables = $this->getRegisteredVariables();
 			foreach($variables as $variable) {
+				if(!IPS_VariableExists($variable->VariableID)) {
+					IPS_LogMessage("AverageValue", sprintf("Skipping %d: variable does not exist", $variable->VariableID));
+					continue;
+				}
 				$varInfo = IPS_GetVariable($variable->VariableID);
 				if(time() - $varInfo["VariableUpdated"] > 60*60*$maxAge) {
 					IPS_LogMessage("AverageValue", sprintf("Skipping %d due to age (last updated at %s, older than %d hours)", $variable->VariableID, date("H:i:s", $varInfo["VariableUpdated"]), $maxAge));

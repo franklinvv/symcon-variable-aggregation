@@ -27,7 +27,7 @@
 
 			if($variables != NULL) {
 				foreach($variables as $variable) {
-					IPS_LogMessage("MaxValue", sprintf("Registering to %d", $variable->VariableID));
+					//IPS_LogMessage("MaxValue", sprintf("Registering to %d", $variable->VariableID));
 					$this->RegisterMessage($variable->VariableID, VM_UPDATE);
 				}
 			}
@@ -53,7 +53,7 @@
 
 			$maxValue = $this->calculateMaxValue();
 			$this->SetValue("Max", $maxValue);
-			IPS_LogMessage("MaxValue", "Message from SenderID ".$senderId." with Message ".$message."\r\n Data: ".print_r($data, true));
+			//IPS_LogMessage("MaxValue", "Message from SenderID ".$senderId." with Message ".$message."\r\n Data: ".print_r($data, true));
 		}
 
 		private function calculateMaxValue() {
@@ -61,6 +61,10 @@
 
 			$variables = $this->getRegisteredVariables();
 			foreach($variables as $variable) {
+				if(!IPS_VariableExists($variable->VariableID)) {
+					IPS_LogMessage("MaxValue", sprintf("Skipping %d: variable does not exist", $variable->VariableID));
+					continue;
+				}
 				$value = GetValueInteger($variable->VariableID);
 				if($maxValue === null || $value > $maxValue) {
 					$maxValue = $value;
