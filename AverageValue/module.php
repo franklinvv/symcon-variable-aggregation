@@ -71,7 +71,7 @@
 				$averageValue += ($value * $variable->Weight);
 				$totalWeight += $variable->Weight;
 			}
-			if($averageValue == 0) {
+			if($totalWeight == 0) {
 				return 0;
 			}
 

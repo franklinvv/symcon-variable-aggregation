@@ -57,17 +57,17 @@
 		}
 
 		private function calculateMaxValue() {
-			$maxValue = 0;
+			$maxValue = null;
 
 			$variables = $this->getRegisteredVariables();
 			foreach($variables as $variable) {
 				$value = GetValueInteger($variable->VariableID);
-				if($value > $maxValue) {
+				if($maxValue === null || $value > $maxValue) {
 					$maxValue = $value;
 				}
 			}
 
-			return $maxValue;
+			return $maxValue ?? 0;
 		}
 
 		// private function calculateAverageTemperature() {
